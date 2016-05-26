@@ -125,6 +125,11 @@ class Smile_VirtualCategories_Model_Indexer_VirtualCategories_Product_Position e
      */
     public function reindexAll()
     {
+        $helper = Mage::helper('smile_elasticsearch');
+        if (!$helper->isActiveEngine()) {
+            return;
+        }
+
         /** Reindex all data from search terms custom positions index */
         $engine       = Mage::helper('catalogsearch')->getEngine();
         $mapping      = $engine->getCurrentIndex()->getMapping('product');

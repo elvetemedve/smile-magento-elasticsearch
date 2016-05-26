@@ -116,6 +116,11 @@ class Smile_ElasticSearch_Model_Indexer_Search_Terms_Position extends Mage_Index
      */
     public function reindexAll()
     {
+        $helper = Mage::helper('smile_elasticsearch');
+        if (!$helper->isActiveEngine()) {
+            return;
+        }
+
         /** Reindex all data from search terms custom positions index */
         $engine       = Mage::helper('catalogsearch')->getEngine();
         $mapping      = $engine->getCurrentIndex()->getMapping('product');

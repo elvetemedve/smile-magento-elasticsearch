@@ -18,6 +18,17 @@
  */
 class Smile_ElasticSearch_Model_Observer
 {
+    private $_factory;
+
+    public function __construct($services = [])
+    {
+        if (isset($services['factory']) && $services['factory'] instanceof Mage_Core_Model_Factory) {
+            $this->_factory = $services['factory'];
+        } else {
+            $this->_factory = new Mage_Core_Model_Factory();
+        }
+    }
+
     /**
      * Adds search weight parameter in attribute form.
      *
